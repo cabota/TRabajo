@@ -73,10 +73,10 @@ public class excelreader {
     }
 
 
-    public String CalcularDiferencia (int importeBAse , int importetotal){
+    public String CalcularDiferencia (double importeBAse , double importetotal){
         String diferencia = null;
 
-        int calculo = importeBAse - importetotal;
+        double calculo = importeBAse - importetotal;
 
         diferencia = String.valueOf(calculo);
 
@@ -164,15 +164,15 @@ public class excelreader {
                     }
                     String fechsalida =excelreader.conseguirsalida(entrada,dias);
                     String dispo = excelreader.CalculoDispo(Integer.valueOf(primerAdulto),Integer.valueOf(segundoAdulto),Integer.valueOf(tercerAdulto),Integer.valueOf(primerNino),Integer.valueOf(segundoNino),Integer.valueOf(tercerNino));
-                    diferenciacalculada = excelreader.CalcularDiferencia(Integer.valueOf(importeBase.replace(".","").replace(",","")),Integer.valueOf(importeCompleto.replace(".","").replace(",","")));
+                    diferenciacalculada = excelreader.CalcularDiferencia(Double.valueOf(importeBase.replace(".","").replace(",",".")),Double.valueOf(importeCompleto.replace(".","").replace(",",".")));
                     //aqui se añade el  array
-                    if(Integer.valueOf(diferenciacalculada)<0){
+                    if(Double.valueOf(diferenciacalculada)<0){
                         diferncianegativa = diferenciacalculada;
-                        difernciapositiva = Integer.toString(0);
+                        difernciapositiva = Double.toString(0);
 
                     }else{
                         difernciapositiva = diferenciacalculada;
-                        diferncianegativa= Integer.toString(0);
+                        diferncianegativa= Double.toString(0);
 
                     }
 
