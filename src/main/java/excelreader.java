@@ -15,13 +15,14 @@ import java.util.Date;
 
 public class excelreader {
     String document = null;
+    int posicionarray = 0;
 
     public String[] getData() {
         return data;
     }
 
     String [] data = new String[10000];
-    int posicionarray = 0;
+
     int columnas = 13;
 
     public String conseguirsalida (String entrada , String dias) throws ParseException {
@@ -155,32 +156,35 @@ public class excelreader {
 
                             }
 
+
                         }
 
 
 
                     }
+                    String fechsalida =excelreader.conseguirsalida(entrada,dias);
+                    String dispo = excelreader.CalculoDispo(Integer.valueOf(primerAdulto),Integer.valueOf(segundoAdulto),Integer.valueOf(tercerAdulto),Integer.valueOf(primerNino),Integer.valueOf(segundoNino),Integer.valueOf(tercerNino));
+                    diferenciacalculada = excelreader.CalcularDiferencia(Integer.valueOf(importeBase.replace(".","").replace(",","")),Integer.valueOf(importeCompleto.replace(".","").replace(",","")));
+                    //aqui se añade el  array
+                    if(Integer.valueOf(diferenciacalculada)<0){
+                        diferncianegativa = diferenciacalculada;
+                        difernciapositiva = Integer.toString(0);
+
+                    }else{
+                        difernciapositiva = diferenciacalculada;
+                        diferncianegativa= Integer.toString(0);
+
+                    }
+
+
+
+                    excelreader.document= Clientes+"_"+ numerofactura+"_" +tipohabitacion+"_" + dispo+"_" +regimen +"_" +entrada+"_" +fechsalida+"_" +importeBase+"_" + dias+"_" + importeCompleto+"_" +difernciapositiva+"_" +diferncianegativa;
+
+                    excelreader.guardarArray(excelreader.document,excelreader.posicionarray);
+                    excelreader.posicionarray = excelreader.posicionarray + 1;
                 }
-                 String fechsalida =excelreader.conseguirsalida(entrada,dias);
-               String dispo = excelreader.CalculoDispo(Integer.valueOf(primerAdulto),Integer.valueOf(segundoAdulto),Integer.valueOf(tercerAdulto),Integer.valueOf(primerNino),Integer.valueOf(segundoNino),Integer.valueOf(tercerNino));
-               diferenciacalculada = excelreader.CalcularDiferencia(Integer.valueOf(importeBase.replace(".","").replace(",","")),Integer.valueOf(importeCompleto.replace(".","").replace(",","")));
-                //aqui se añade el  array
-                if(Integer.valueOf(diferenciacalculada)<0){
-                    diferncianegativa = diferenciacalculada;
-                    difernciapositiva = Integer.toString(0);
-
-                }else{
-                    difernciapositiva = diferenciacalculada;
-                     diferncianegativa= Integer.toString(0);
-
-                }
 
 
-
-                excelreader.document= Clientes+"_"+ numerofactura+"_" +tipohabitacion+"_" + dispo+"_" +regimen +"_" +entrada+"_" +fechsalida+"_" +importeBase+"_" + dias+"_" + importeCompleto+"_" +difernciapositiva+"_" +diferncianegativa;
-
-                excelreader.guardarArray(excelreader.document,excelreader.posicionarray);
-                excelreader.posicionarray = excelreader.posicionarray + 1;
                 System.out.println("hola");
             }
             excelreader.escribirdatos(excelreader.getData());
