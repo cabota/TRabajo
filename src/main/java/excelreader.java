@@ -55,9 +55,9 @@ public class excelreader {
         return dispo;
     }
 
-    public void escribirdatos (String [] datos) throws IOException {
+    public void escribirdatos (String [] datos,String save) throws IOException {
         excelWriter excelWriter = new excelWriter();
-        excelWriter.Ecribirdatos(datos ,this.posicionarray);
+        excelWriter.Ecribirdatos(datos ,this.posicionarray,save);
     }
 
     public String []  guardarArray (String data, int posicionarray ){
@@ -91,7 +91,7 @@ public class excelreader {
             return datoslipt[0] + "." + datoslipt[1].substring(0, 2);
         }
     }
-    public void EjecutarLectura (String rutaleer ){
+    public void EjecutarLectura (String rutaleer ,String save){
         excelreader excelreader = new excelreader();
         String numerofactura=null;
         String Clientes=null;
@@ -193,7 +193,7 @@ public class excelreader {
 
 
             }
-            excelreader.escribirdatos(excelreader.getData());
+            excelreader.escribirdatos(excelreader.getData(),save);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -203,9 +203,7 @@ public class excelreader {
 
 
     public static void main(String args[]) throws IOException, FileNotFoundException {
-        excelreader excelreader = new excelreader();
-        String sDirectorio = "C:\\Users\\luisc\\Desktop\\reposgit\\TRabajo\\excels";
-        excelreader.EjecutarLectura(sDirectorio);
+
 
     }
 }
