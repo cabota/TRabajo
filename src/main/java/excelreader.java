@@ -79,9 +79,17 @@ public class excelreader {
         double calculo = importeBAse - importetotal;
 
         diferencia = String.valueOf(calculo);
+       diferencia= diferencia.replace(".",",");
+        String[] datoslipt = new String[1];
+
+        datoslipt = diferencia.split(",");
 
 
-        return diferencia;
+        if(datoslipt[1].length()<2) {
+            return datoslipt[0] + "." + datoslipt[1].substring(0, 1);
+        }else{
+            return datoslipt[0] + "." + datoslipt[1].substring(0, 2);
+        }
     }
 
 
@@ -111,7 +119,7 @@ public class excelreader {
 
 
         try {
-            String sDirectorio = "C:\\Users\\luisc\\IdeaProjects\\guillemexcel\\excels";
+            String sDirectorio = "C:\\Users\\luisc\\Desktop\\reposgit\\TRabajo\\excels";
             File f = new File(sDirectorio);
             File[] ficheros = f.listFiles();
             HSSFRow hssfRow;
@@ -136,7 +144,7 @@ public class excelreader {
 
 
                             String contenidoCelda = formatter.formatCellValue(hssfRow.getCell(c));
-                            System.out.println("celda: " + c + " valor " + contenidoCelda);
+                           // System.out.println("celda: " + c + " valor " + contenidoCelda);
                             switch (c){
 
                                 case 0 : numerofactura = contenidoCelda;
@@ -185,7 +193,7 @@ public class excelreader {
                 }
 
 
-                System.out.println("hola");
+
             }
             excelreader.escribirdatos(excelreader.getData());
         }

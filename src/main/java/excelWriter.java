@@ -16,7 +16,7 @@ public class excelWriter {
         String[][] datosSpliteados = new String[totalfilas][];
 
 
-        String filename = "C:\\Users\\luisc\\IdeaProjects\\guillemexcel\\result\\test.xlsx";
+        String filename = "C:\\Users\\luisc\\Desktop\\reposgit\\TRabajo\\result\\test.xlsx";
         OutputStream salida = new FileOutputStream(filename);
 
         XSSFWorkbook libro = new XSSFWorkbook();
