@@ -64,7 +64,7 @@ public class excelreader {
 
 
         this.data[posicionarray] =data;
-        System.out.println(this.data);
+
 
         return this.data;
 
@@ -91,9 +91,7 @@ public class excelreader {
             return datoslipt[0] + "." + datoslipt[1].substring(0, 2);
         }
     }
-
-
-    public static void main(String args[]) throws IOException, FileNotFoundException {
+    public void EjecutarLectura (String rutaleer ){
         excelreader excelreader = new excelreader();
         String numerofactura=null;
         String Clientes=null;
@@ -119,14 +117,14 @@ public class excelreader {
 
 
         try {
-            String sDirectorio = "C:\\Users\\luisc\\Desktop\\reposgit\\TRabajo\\excels";
-            File f = new File(sDirectorio);
+
+            File f = new File(rutaleer);
             File[] ficheros = f.listFiles();
             HSSFRow hssfRow;
             int cols = 0;
             for (int x = 0; x < ficheros.length; x++) {
 
-                String rutaArchivoExcel = sDirectorio + "\\" + ficheros[x].getName();
+                String rutaArchivoExcel = rutaleer + "\\" + ficheros[x].getName();
 
                 FileInputStream inputStream = new FileInputStream(rutaArchivoExcel);
                 Workbook workbook = new HSSFWorkbook(inputStream);
@@ -144,7 +142,7 @@ public class excelreader {
 
 
                             String contenidoCelda = formatter.formatCellValue(hssfRow.getCell(c));
-                           // System.out.println("celda: " + c + " valor " + contenidoCelda);
+                            // System.out.println("celda: " + c + " valor " + contenidoCelda);
                             switch (c){
 
                                 case 0 : numerofactura = contenidoCelda;
@@ -200,6 +198,15 @@ public class excelreader {
         catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+
+    public static void main(String args[]) throws IOException, FileNotFoundException {
+        excelreader excelreader = new excelreader();
+        String sDirectorio = "C:\\Users\\luisc\\Desktop\\reposgit\\TRabajo\\excels";
+        excelreader.EjecutarLectura(sDirectorio);
+
     }
 }
 
