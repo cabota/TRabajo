@@ -10,15 +10,23 @@ public class front {
     public JTextField RutaSave;
     public JButton ejecutar;
     public JPanel jpanel;
+    private JLabel Rutasavetext;
 
 
-
+    public front() {
+        ejecutar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                front front = new front();
+                front.Run();
+            }
+        });
+    }
 
     public void Run () {
         excelreader excel = new excelreader();
-        front front = new front();
-        String rutasave = front.RutaSave.getText();
-        String rutaleer = front.RutaRead.getText();
+
+        String rutasave = this.RutaSave.getText();
+        String rutaleer = this.RutaRead.getText();
 
         excel.EjecutarLectura(rutasave, rutaleer);
     }
